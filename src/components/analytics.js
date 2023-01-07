@@ -1,15 +1,28 @@
 import { useState, useEffect } from 'react';
-
+import { Button, Container, Row, Col } from 'reactstrap';
+import {useNavigate, useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 const request = 'https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics';
 // https://edtechbooks.org/api.php?action=search_books&offset=0&limit=200
 // https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics
 // https://pokeapi.co/api/v2/pokemon?limit=10
-function Analytics() {
+function Analytics({shortName45, setName}) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errMsg, setErrMsg] = useState('');
 
+    const navigate = useNavigate();
+
+    console.log(shortName45)
+
+    // const location = useLocation();
+    // // const shortNameUse = location.shortName;
+    // const shortNameUse = location.happy;
+    // console.log(shortNameUse);
+    // // const {state} = useLocation();
+    // // const { id, color } = state; // Read values passed on state
+    
     useEffect(() => {
         const asyncFetch = async () => {
             try {
@@ -50,16 +63,26 @@ function Analytics() {
         <div>
             {data && (
                 <div>
-                    {sample.book_id
+                    <Container>
+                        <Row>
+                            <Col>
+                                <Button onClick={() => navigate('/')}>Back To All Books</Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {sample.book_id}
+                            </Col>
+                        </Row>
+                    </Container>
+
                     
-                    /* <h1>top 10 poke</h1>
-                    {sample.results.map((item, idx) => (
-                        <div key={idx}>{item.book_id}</div>
-                    ))} */}
+    
                 </div>
             )}
         </div>
     );
+   
 }
 
 export default Analytics;

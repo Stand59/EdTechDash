@@ -1,34 +1,27 @@
 import BookNames from './components/bookNames';
 import Analytics from './components/analytics';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Content from './components/content';
+import { useState} from 'react';
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Routes,
     Route,
-    Link
+    Link,
   } from "react-router-dom";
+//   import {
+//     BrowserRouter as Router,
+//     Routes,
+//     Route,
+//     Link
+//   } from "react-router-dom";
 import './App.css';
 
 
 function App() {
+    const [shortName1, setshortName] = useState(2);
     return (
-        <Router>
-            <div>
-                <ul>
-                    <li>
-                    <Link to="/">List of Books</Link>
-                    </li>
-                    <li>
-                    <Link to="/analytics">Analytics</Link>
-                    </li>
-                </ul>
-                <hr />
-            <Routes>
-                <Route  path="/" element={<BookNames/>}/>
-                <Route path="/analytics" element={<Analytics/>}/>
-            </Routes>
-            </div>
-        </Router>
+        <Content/>
     )
 }
 
