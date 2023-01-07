@@ -3,7 +3,7 @@ import { Button, Container, Row, Col } from 'reactstrap';
 import {useNavigate, useLocation } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 
-const request = 'https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics';
+
 // https://edtechbooks.org/api.php?action=search_books&offset=0&limit=200
 // https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics
 // https://pokeapi.co/api/v2/pokemon?limit=10
@@ -14,7 +14,10 @@ function Analytics({shortName45, setName}) {
 
     const navigate = useNavigate();
 
+    // const request = 'https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics';
+    const request = 'https://edtechbooks.org/api.php?book='+ shortName45 +'&action=analytics';
     console.log(shortName45)
+    console.log(request)
 
     // const location = useLocation();
     // // const shortNameUse = location.shortName;
@@ -58,7 +61,17 @@ function Analytics({shortName45, setName}) {
     // console.log(sample)
     // let zero = sample 
     // const first = data.results[0];
-    let sample = data.chapter
+
+    let sample = data.book;
+    console.log(sample);
+    let xx = sample.altmetrics;
+    console.log(xx);
+    let bookID= xx.book_id
+    let totalRatings= xx.total_ratings
+    let avgRating= xx.avg_rating
+    let costSavings= xx.cost_savings
+
+
     return (
         <div>
             {data && (
@@ -70,8 +83,16 @@ function Analytics({shortName45, setName}) {
                             </Col>
                         </Row>
                         <Row>
+                            <h1>{sample.title}</h1>
+                        </Row>
+                        <Row>
                             <Col>
-                                {sample.book_id}
+                                {/* {sample.book_id} */}
+                                {/* {this.xx.book_id} */}
+                                <div>{bookID}</div>
+                                <div>{totalRatings}</div>
+                                <div>{avgRating}</div>
+                                <div>{costSavings}</div>
                             </Col>
                         </Row>
                     </Container>
