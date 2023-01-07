@@ -94,7 +94,6 @@ function BookNames({shortName45, setName}) {
                                             {/* <Button component={Link} to="/analytics">Analytics</Button> */}
                                             {/* <Button onClick={navigate}>Analytics</Button> */}
                                             {/* <Button onClick={() => navigate('../analytics', { replace: true })}>Register</Button> */}
-                                            {item.short_name}
                                             <Button onClick={() => {
                                                  var shortName = item.short_name;
                                                 // console.log(shortName)

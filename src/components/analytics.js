@@ -82,17 +82,33 @@ function Analytics({shortName45, setName}) {
                                 <Button onClick={() => navigate('/')}>Back To All Books</Button>
                             </Col>
                         </Row>
+                        <br/>
                         <Row>
-                            <h1>{sample.title}</h1>
+                            <h1>Analytics for <em><strong>{sample.title}</strong></em></h1>
                         </Row>
                         <Row>
                             <Col>
                                 {/* {sample.book_id} */}
                                 {/* {this.xx.book_id} */}
-                                <div>{bookID}</div>
-                                <div>{totalRatings}</div>
-                                <div>{avgRating}</div>
-                                <div>{costSavings}</div>
+                                <table>
+                                    <tr>
+                                        <th>Book ID</th>
+                                        <td>{bookID}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total # of Ratings</th>
+                                        <td>{totalRatings}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Average Ratings</th>
+                                        <td>{avgRating}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cost Savings</th>
+                                        <td>{costSavings}</td>
+                                    </tr>
+                                </table>
+                                
                             </Col>
                         </Row>
                     </Container>
