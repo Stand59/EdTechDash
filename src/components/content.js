@@ -22,7 +22,7 @@ import {
         return (
             <BrowserRouter>
             <div>
-                <ul>
+                {/* <ul>
                     <li>
                     <Link to="/">List of Books</Link>
                     </li>
@@ -30,7 +30,7 @@ import {
                     <Link to="/analytics">Analytics</Link>
                     </li>
                 </ul>
-                <hr />
+                <hr /> */}
             <Routes>
                 <Route  path="/" element={<BookNames shortName45={shortName} setName={setName}/>}/>
                 <Route path="/analytics" element={<Analytics shortName45={shortName} setName={setName}/>}/>

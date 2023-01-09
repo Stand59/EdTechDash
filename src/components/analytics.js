@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col } from 'reactstrap';
 import {useNavigate, useLocation } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
+import ChapterNames from './chapterNames';
 
 
 // https://edtechbooks.org/api.php?action=search_books&offset=0&limit=200
@@ -16,8 +17,8 @@ function Analytics({shortName45, setName}) {
 
     // const request = 'https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics';
     const request = 'https://edtechbooks.org/api.php?book='+ shortName45 +'&action=analytics';
-    console.log(shortName45)
-    console.log(request)
+    // console.log(shortName45)
+    // console.log(request)
 
     // const location = useLocation();
     // // const shortNameUse = location.shortName;
@@ -71,6 +72,7 @@ function Analytics({shortName45, setName}) {
     let avgRating= xx.avg_rating
     let costSavings= xx.cost_savings
 
+    // consider putting all of this in function, may make it not glitch
 
     return (
         <div>
@@ -92,23 +94,19 @@ function Analytics({shortName45, setName}) {
                                 {/* {this.xx.book_id} */}
                                 <table>
                                     <tr>
-                                        <th>Book ID</th>
-                                        <td>{bookID}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total # of Ratings</th>
+                                        <th>Total # of Ratings:</th>
                                         <td>{totalRatings}</td>
                                     </tr>
                                     <tr>
-                                        <th>Average Ratings</th>
+                                        <th>Average Rating:</th>
                                         <td>{avgRating}</td>
                                     </tr>
                                     <tr>
-                                        <th>Cost Savings</th>
+                                        <th>Cost Savings:</th>
                                         <td>{costSavings}</td>
                                     </tr>
                                 </table>
-                                
+                                {/* <ChapterNames/> */}
                             </Col>
                         </Row>
                     </Container>
