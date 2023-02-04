@@ -1,9 +1,9 @@
 import GaugeChart from 'react-gauge-chart';
 
-function Gauge ({views}) {
+function Downloads ({downloads}) {
     
-    var totalViews = views;
-    console.log(totalViews)
+    var totalViews = downloads;
+    // console.log(totalViews)
         // totalViews = 100001
         var impactLevel = 'nothing'
  
@@ -52,8 +52,8 @@ function Gauge ({views}) {
         // 10000/1000000 *.033
         // 100,000/1000000 *.33 - nope
        
-        console.log('impactLevel is: ' + impactLevel)
-        console.log(impactLevel)
+        // console.log('impactLevel is: ' + impactLevel)
+        // console.log(impactLevel)
 
         const chartStyle = {
             width: 250,
@@ -77,4 +77,4 @@ function Gauge ({views}) {
         <GaugeChart id="gauge-chart1" percent={impactLevel} hideText="true" style={chartStyle} colors={["#FF0000", "#FFFF00", "#00FF00"]}/>
     )
 }
-export default Gauge;
+export default Downloads;

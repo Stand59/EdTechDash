@@ -50,6 +50,7 @@ function BookNames({setName}) {
     let sample1 = data.books
     let sample2 = Object.values(sample1);
     
+    console.log (sample2)
     let length = sample2.length
     
     let title = sample2.map(a => a.title);

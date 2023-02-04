@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, CardTitle, CardBody, CardText } from 'reactstrap';
 import {useNavigate } from 'react-router-dom';
 import Stars from './stars';
-import Views from './views';
-import Downloads from './downloads';
+import Downloads from './downloadsGauge';
 import GaugeChart from 'react-gauge-chart';
-import Gauge from './gauge';
+import Views from './viewGuage';
 
 
-function Analytics({shortName45, setName2, shortName22}) {
+
+function Analytics({shortName45}) {
     
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
@@ -56,26 +56,31 @@ function Analytics({shortName45, setName2, shortName22}) {
 
     let sample = data.book;
    
-    console.log(sample)
+   console.log(sample)
+  
 
     let xx = sample.altmetrics;
 
-    let bookID= xx.book_id
+    // let bookID= xx.book_id
     let totalRatings= xx.total_ratings
-    let avgRating= xx.avg_rating
+    let avgRatingOld= xx.avg_rating
     let costSavings= xx.cost_savings
-    let referrers = sample.referrers
+    let referersObject = sample.referers
+    let referers = referersObject.map(a => a.referer)
  
     let views= sample.page_views;
     let downloads = sample.pdf_downloads;
     let updated = sample.last_updated;
+
+    let avgRating = Math.round((avgRatingOld + Number.EPSILON) * 100) / 100;
 
     let views1 = views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     let downloads1 = downloads.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     let costSavings1 = costSavings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     let totalRatings1 = totalRatings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-   
+    console.log(referers)
+
     // consider putting all of this in function, may make it not glitch
 
     return (
@@ -120,7 +125,7 @@ function Analytics({shortName45, setName2, shortName22}) {
                                                 </Col>
                                                 <Col>
                                                     {/* <Views views = {views}/> */}
-                                                    <Gauge views = {views}/>
+                                                    <Views views = {views}/>
                                                 </Col>
                                             </Row>
                                             <Row>
@@ -171,14 +176,6 @@ function Analytics({shortName45, setName2, shortName22}) {
                             <Col>
                                 <Card color="primary">
                                     <CardBody>
-                                        <CardTitle><h3>Unique Viewers</h3></CardTitle>
-                                        <CardText id="white"></CardText>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col>
-                                <Card color="primary">
-                                    <CardBody>
                                         <CardTitle><h3>Chapter Predicted Reads</h3></CardTitle>
                                         <CardText id="white"></CardText>
                                     </CardBody>
@@ -191,6 +188,8 @@ function Analytics({shortName45, setName2, shortName22}) {
                                         <CardText id="white"></CardText>
                                     </CardBody>
                                 </Card>
+                            </Col>
+                            <Col>
                             </Col>
                         </Row>
                         <br/>
@@ -245,7 +244,12 @@ function Analytics({shortName45, setName2, shortName22}) {
                                         <CardText>
                                             <Row>
                                                 <Col id="white">
-                                                    {referrers}
+                                                    {referers.map((item, idx) => (
+                                                        <Card color="secondary" key={idx}>
+                                                            {item}
+                                                        </Card>
+                                                    ))
+}
                                                 </Col>
                                             </Row>
                                         </CardText>
@@ -253,6 +257,18 @@ function Analytics({shortName45, setName2, shortName22}) {
                                 </Card>
                             </Col>
                             <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Reading Level/ Difficulty</h3></CardTitle>
+                                        <CardText>
+                                            <Row>
+                                                <Col id="white">
+                                                
+                                                </Col>
+                                            </Row>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
                             </Col>
                         </Row>
                         

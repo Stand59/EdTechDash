@@ -10,7 +10,7 @@ function ChapterNames({shortName22, shortName45 }) {
     // console.log(shortName22)
         const request = 'https://edtechbooks.org/api.php?book='+ shortName45 + '&chapter=' + shortName22 + '&action=analytics';
     
-    console.log(request)
+    // console.log(request)
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errMsg, setErrMsg] = useState('');

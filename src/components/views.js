@@ -5,7 +5,7 @@ import highDash from './highDash.png';
 function Views ({views}) {
     
     var totalViews = views;
-    console.log(totalViews)
+    // console.log(totalViews)
 
         var impactLevel = 'nothing'
  
@@ -22,7 +22,7 @@ function Views ({views}) {
             impactLevel = highDash
         }
         // console.log('impactLevel is: ' + impactLevel)
-        console.log(impactLevel)
+        // console.log(impactLevel)
         
         // var starArray = [];
         // for (let step = 0; step < impactLevel; step++) {

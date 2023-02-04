@@ -101,7 +101,7 @@ function ChapterNames({shortName45, shortName22, setName2}) {
                                 // console.log(shortName22);
                                 // ready1();
                                 setName2(item.short_name);
-                                console.log(shortName22)
+                                // console.log(shortName22)
                             }}>
                                 <CardBody>{item.title}</CardBody>
                             </Card>

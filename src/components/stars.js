@@ -1,10 +1,9 @@
-import Full_Rating from './Full_Rating.png'; 
-import star from './star.png'
+import Full_Rating from '../assets/Full_Rating.png'; 
+import star from '../assets/star.png'
 
 function Stars ({avgRating}) {
     
     var Rating = avgRating;
-   
 
         var numStar = 0
  
