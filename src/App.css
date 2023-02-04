@@ -38,3 +38,27 @@
 }
 
 
+/* table, th, td {
+    border: 1px solid black;
+  } */
+
+  #chapterCard {
+    width: 500px;
+  }
+
+  h3 {
+    color: white;
+  }
+
+  #white {
+    color: white;
+    font-size: larger;
+  }
+
+  h2 {
+    color:black;
+  }
+
+  h1 {
+    color:black;
+  }

@@ -4,7 +4,6 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    Link,
   } from "react-router-dom";
   import React, {Component} from 'react';
   import  { useState } from "react";
@@ -18,22 +17,13 @@ import {
 //     //     };
 //     //   }
     const [shortName, setName] = useState('hello');
-
+    const [shortName2, setName2] = useState('hello');
         return (
             <BrowserRouter>
             <div>
-                {/* <ul>
-                    <li>
-                    <Link to="/">List of Books</Link>
-                    </li>
-                    <li>
-                    <Link to="/analytics">Analytics</Link>
-                    </li>
-                </ul>
-                <hr /> */}
             <Routes>
                 <Route  path="/" element={<BookNames shortName45={shortName} setName={setName}/>}/>
-                <Route path="/analytics" element={<Analytics shortName45={shortName} setName={setName}/>}/>
+                <Route path="/analytics" element={<Analytics shortName45={shortName} shortName22={shortName2} setName2={setName2}/>}/>
             </Routes>
             </div>
         </BrowserRouter>

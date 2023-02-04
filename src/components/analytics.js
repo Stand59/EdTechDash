@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Row, Col } from 'reactstrap';
-import {useNavigate, useLocation } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
-import ChapterNames from './chapterNames';
+import { Button, Container, Row, Col, Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import {useNavigate } from 'react-router-dom';
+import Stars from './stars';
+import Views from './views';
+import Downloads from './downloads';
+import GaugeChart from 'react-gauge-chart';
+import Gauge from './gauge';
 
 
-// https://edtechbooks.org/api.php?action=search_books&offset=0&limit=200
-// https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics
-// https://pokeapi.co/api/v2/pokemon?limit=10
-function Analytics({shortName45, setName}) {
+function Analytics({shortName45, setName2, shortName22}) {
+    
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errMsg, setErrMsg] = useState('');
@@ -17,16 +18,8 @@ function Analytics({shortName45, setName}) {
 
     // const request = 'https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics';
     const request = 'https://edtechbooks.org/api.php?book='+ shortName45 +'&action=analytics';
-    // console.log(shortName45)
-    // console.log(request)
+   
 
-    // const location = useLocation();
-    // // const shortNameUse = location.shortName;
-    // const shortNameUse = location.happy;
-    // console.log(shortNameUse);
-    // // const {state} = useLocation();
-    // // const { id, color } = state; // Read values passed on state
-    
     useEffect(() => {
         const asyncFetch = async () => {
             try {
@@ -59,19 +52,30 @@ function Analytics({shortName45, setName}) {
             </div>
         );
     }
-    // console.log(sample)
-    // let zero = sample 
-    // const first = data.results[0];
+
 
     let sample = data.book;
-    console.log(sample);
+   
+    console.log(sample)
+
     let xx = sample.altmetrics;
-    console.log(xx);
+
     let bookID= xx.book_id
     let totalRatings= xx.total_ratings
     let avgRating= xx.avg_rating
     let costSavings= xx.cost_savings
+    let referrers = sample.referrers
+ 
+    let views= sample.page_views;
+    let downloads = sample.pdf_downloads;
+    let updated = sample.last_updated;
 
+    let views1 = views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let downloads1 = downloads.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let costSavings1 = costSavings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let totalRatings1 = totalRatings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+   
     // consider putting all of this in function, may make it not glitch
 
     return (
@@ -80,39 +84,189 @@ function Analytics({shortName45, setName}) {
                 <div>
                     <Container>
                         <Row>
-                            <Col>
-                                <Button onClick={() => navigate('/')}>Back To All Books</Button>
+                            <Col sm={2}>
+                                <Button className="mt-4" onClick={() => navigate('/')}>Back To All Books</Button>
                             </Col>
                         </Row>
                         <br/>
                         <Row>
-                            <h1>Analytics for <em><strong>{sample.title}</strong></em></h1>
+                            
+                            <Col sm={9}><h1>Analytic Dashboard for<em><strong>{sample.title}</strong></em></h1></Col>
+                            <Col>
+                                <img height="300px"
+                                    src={'https://edtechbooks.org/book_cover_images/' + sample.cover_image_sm}
+                                />
+                            </Col>
+                        </Row>
+                        <Row className="mt-6">
+                            <h2 >Impact Analytics</h2>
                         </Row>
                         <Row>
                             <Col>
-                                {/* {sample.book_id} */}
-                                {/* {this.xx.book_id} */}
-                                <table>
-                                    <tr>
-                                        <th>Total # of Ratings:</th>
-                                        <td>{totalRatings}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Average Rating:</th>
-                                        <td>{avgRating}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Cost Savings:</th>
-                                        <td>{costSavings}</td>
-                                    </tr>
-                                </table>
-                                {/* <ChapterNames/> */}
+                                <Card color="primary" >
+                                    <CardBody>
+                                        <CardTitle><h3>Page Views</h3></CardTitle>
+                                        <CardText>
+                                            <Row>
+                                                <Col id="white">
+                                                    {views1}
+                                                </Col>
+                                                <Col id="white">
+                                                    Impact Level
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                </Col>
+                                                <Col>
+                                                    {/* <Views views = {views}/> */}
+                                                    <Gauge views = {views}/>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                </Col>
+                                                
+                                            </Row>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3> PDF Downloads</h3></CardTitle>
+                                        <CardText>
+                                            <Row>
+                                                <Col id="white">
+                                                    {downloads1}
+                                                </Col>
+                                                <Col id="white">
+                                                    Impact Level
+                                                </Col>
+                                                
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                </Col>
+                                                <Col>
+                                                    <Downloads downloads = {downloads}/>
+                                                </Col>
+                                            </Row>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Calculated Cost Savings</h3></CardTitle>
+                                        <CardText id="white">${costSavings1}</CardText>
+                                    </CardBody>
+                                </Card>
                             </Col>
                         </Row>
+                        <br/>
+                        <Row>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Unique Viewers</h3></CardTitle>
+                                        <CardText id="white"></CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Chapter Predicted Reads</h3></CardTitle>
+                                        <CardText id="white"></CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Citations</h3></CardTitle>
+                                        <CardText id="white"></CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        </Row>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <Row>
+                            <h2>Quality Analytics</h2>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Card color="primary" >
+                                    <CardBody>
+                                        <CardTitle><h3>User Ratings</h3></CardTitle>
+                                        <CardText>
+                                            <Row>
+                                                <Col id="white">
+                                                Total # of Ratings: {totalRatings1}
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col id="white">
+                                                    Average Rating: {avgRating}
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                    <Stars avgRating={avgRating}/>
+                                                </Col>
+                                            </Row>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Last Updated</h3></CardTitle>
+                                        <CardText>
+                                            <Row>
+                                                <Col id="white">
+                                                    {updated}
+                                                </Col>
+                                            </Row>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card color="primary">
+                                    <CardBody>
+                                        <CardTitle><h3>Referrers</h3></CardTitle>
+                                        <CardText>
+                                            <Row>
+                                                <Col id="white">
+                                                    {referrers}
+                                                </Col>
+                                            </Row>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        
+                        <br/>
+                        <br/>
+
+                  
+                                {/* {sample.book_id} */}
+                                {/* {this.xx.book_id} */}
+                               
                     </Container>
 
+                    {/* <ChapterNames shortName45={shortName45} shortName22={shortName22} setName2 = {setName2} /> */}
                     
-    
                 </div>
             )}
         </div>

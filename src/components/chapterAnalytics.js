@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
-import {Card, Container, Row, Col, CardBody} from 'reactstrap';
+import {Card, CardTitle, Container, Row, Col, CardBody, Button, color} from 'reactstrap';
 import {useNavigate, Link} from 'react-router-dom';
-import If from './if';
-import { render } from '@testing-library/react';
 
 
 
 
-function ChapterNames({shortName45, shortName22, setName2}) {
-    const request = 'https://edtechbooks.org/api.php?book='+ shortName45;
+function ChapterNames({shortName22, shortName45 }) {
+    // console.log(shortName45)
+    // console.log(shortName22)
+        const request = 'https://edtechbooks.org/api.php?book='+ shortName45 + '&chapter=' + shortName22 + '&action=analytics';
+    
+    console.log(request)
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errMsg, setErrMsg] = useState('');
+    // console.log(shortName45)
     const navigate = useNavigate();
     // navigate('/analytics');
     
@@ -48,14 +51,17 @@ function ChapterNames({shortName45, shortName22, setName2}) {
             </div>
         );
     }
-  
-    var book = data.book;
     
-    var chapterBriefs = book.chapter_briefs;
-   
+    // console.log(data);
+    var chapters = data.chapter;
+    // console.log(chapters);
 
-    const chapter = Object.values(chapterBriefs);
-  
+    // var book = data.book;
+    // console.log(data)
+    // var chapterBriefs = book.chapter_briefs;
+    // // console.log(chapterBriefs)
+    // const chapter = Object.values(chapterBriefs);
+    // console.log(chapter)
 
     //    Object.keys(chapterBriefs).forEach(function(key, index) {
     //     var newIndex = 'x' + index.toString();
@@ -74,52 +80,43 @@ function ChapterNames({shortName45, shortName22, setName2}) {
     //     })
     //   );
 
-    // var ready2 = '{<ChapterAnalytics shortName22 = {shortName22} shortName45 = {shortName45} />}'
+   
 
-    // function ready1 (){
-    //     ready2 = '{<ChapterAnalytics shortName22 = {shortName22} shortName45 = {shortName45} />}'
-    //     console.log(ready2)
-    //     // ChapterNames.forceUpdate();
-    // }
-
-    
-
-    return (
+        return(
         <div>
             {data && (
                 <Container>
                     <br/>
-                    <h2>Chapter Analytics</h2>
-                    <div>click on a chapter to see its analytics</div>
-                    <br/>
-                    {chapter.map((item, idx) => (
+                    {/* {chapter.map((item, idx) => ( */}
+                    {/* <h1>Analytics for <em><strong>{book.title}</strong></em></h1> */}
                     <Row>
-                        <Col className='col-4 ' key={idx}>
-                            <Card color="light" onClick={() => {
-
-                                // setName2(item.short_name);
-                                // console.log(shortName22);
-                                // ready1();
-                                setName2(item.short_name);
-                                console.log(shortName22)
-                            }}>
-                                <CardBody>{item.title}</CardBody>
-                            </Card>
+                        <Col>
+                        {/* <Col className='col-4 ' key={idx}> */}
+                            <table>
+                                <tr>
+                                    <th>Last Updated : </th>
+                                    <td>{chapters.last_updated}</td>
+                                </tr>
+                                <tr>
+                                    <th>Page Views:</th>
+                                    <td>{chapters.page_views}</td>
+                                </tr>
+                            </table>
                         </Col>
                        
                     </Row>
-                     )
-                     )}
-                     <Row>
-                        <Col>
-                            <If shortName22 = {shortName22} shortName45 = {shortName45}/>
-                        </Col>
-                     </Row>
+                    {/* //  )
+                    //  )} */}
                 </Container>
             
             )}
         </div>
-    );
-}
+    ); 
+    }
+
+    
+    
+
+    
 
 export default ChapterNames;

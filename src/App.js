@@ -1,6 +1,7 @@
 import BookNames from './components/bookNames';
 import Analytics from './components/analytics';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'adminBoot/css/sb-admin-2.min.css';
 import Content from './components/content';
 import { useState} from 'react';
 import {
