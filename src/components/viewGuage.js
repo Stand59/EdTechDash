@@ -4,28 +4,35 @@ function Views ({views}) {
     
     var totalViews = views;
 
-        // totalViews = 100001
+        // totalViews = 10000000
+        var medium = 100000;
+        var high = 1000000;
+        // var medium = 10;
+        // var high = 10000;
+        // var high = 30000;
         var impactLevel = 'nothing'
         var number1 = 'nothing'
         var number2 = 'nothing'
         var number3 = 'nothing'
-        if (totalViews <=100000){
-            number1 = (totalViews/100000)*10
+        if (totalViews <=medium){
+            number1 = (totalViews/medium)*10
             impactLevel = 0 + (0.033 * number1)
-        } else if (totalViews>100000 && totalViews<=1000000) {
-            number2 = (totalViews/1000000)*10
+        } else if (totalViews>medium && totalViews<=high) {
+            number2 = (totalViews/(high-medium))*10
             impactLevel = .33 + (0.033 * number2)
-        } else if (totalViews>1000000 && totalViews<=10000000){
-            number3 = (totalViews/10000000)*10
+        } else if (totalViews>high && totalViews<=(high*10)){
+            number3 = (totalViews/((high*10)-high))*10
             impactLevel = .66 + (0.033 * number3)
-        } else {
+        } else if (totalViews>10000000) {
             impactLevel = 1
+        } else  {
+            impactLevel = 0
         }
         // 200000/ 1000000
         // .2 
 
 
-
+ 
         // 20000/100000
         // 1/10
         // *10
@@ -33,7 +40,7 @@ function Views ({views}) {
 
         
 
-        console.log(impactLevel)
+        // console.log(impactLevel)
         // 10000/1000000 * 3.3
         // 100,000/1000000 *.33 - nope
 
