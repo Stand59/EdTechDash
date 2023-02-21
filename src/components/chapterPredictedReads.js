@@ -50,9 +50,9 @@ function ChapterPredictedReads({shortName45}) {
     }
 
     let bookData = data.book;
-    let chapterBriefs = bookData.chapter_briefs;
-    let altmetrics = chapterBriefs.map(a => a.altmetrics);
-    console.log(altmetrics)
+    // let chapterBriefs = bookData.chapter_briefs;
+    // let altmetrics = chapterBriefs.map(a => a.altmetrics);
+    console.log(data)
 
     // const fetchAll = async () => {
     //     try {

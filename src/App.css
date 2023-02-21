@@ -62,3 +62,8 @@
   h1 {
     color:black;
   }
+
+  .button-block {
+    width: 194px;
+    height: 40px;
+  }

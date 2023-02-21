@@ -89,7 +89,7 @@ let chapterViews= sample2.map(a => a.page_views);
 let views = chapterViews.reduce((a, b) => a + b, 0)
 let views2 = views.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-console.log(data)
+// console.log(data)
 
 // console.log(views2);
 
