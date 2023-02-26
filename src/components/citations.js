@@ -9,7 +9,7 @@ function Citations ({sample, authors}) {
 let url = 'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C45&q=' + updatedTitle + '+' + authors + '+edtech+books&btnG=';
     return (
 <div>
-<a href={url} target="_blank"><Button color="light">Visit Google Scholar</Button></a>
+<a href={url} target="_blank"><Button color="primary">Visit Google Scholar</Button></a>
 </div>
     )
 }

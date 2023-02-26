@@ -47,7 +47,7 @@
   }
 
   h3 {
-    color: white;
+    color: black;
   }
 
   #white {
@@ -67,3 +67,17 @@
     width: 194px;
     height: 40px;
   }
+
+  Button{
+    color: #1C75BC;
+  }
+
+  .btn-primary {
+    color: #fff;
+    background-color: #1C75BC;
+    background-color: cutom-color;
+}
+
+.navbar {
+    background-color: #EBEBF2;
+}

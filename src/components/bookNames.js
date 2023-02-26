@@ -69,28 +69,41 @@ function BookNames({setName}) {
                 <div>
                  {/* {sample31} */}
                  <br/>
-                 <h1 className="ml-5">EdTech Books Analytics</h1>
                     <Container>
+                        {/* <Row>
+                            <Col>
+                                <Card>
+                                    <Button onClick={() => {
+                                            
+                                                navigate('50_years');
+                                                
+                                                 setName('50_years');
+                                            }}>
+                                        Test
+                                    </Button>
+                                </Card>
+                            </Col>
+                        </Row> */}
                         <Row>
                             {sample2.map((item, idx) => (
                                 <Col className='col-md-2'  key={idx}>
                                     <div>
-                                        <Card color='primary' className='my-4'>
+                                        <Card color='secondary' className='my-4'>
 
                                             <img 
                                                 src={'https://edtechbooks.org/book_cover_images/' + item.cover_image_md}
                                                 onClick={() => {
                                                     var shortName = item.short_name;
-                                                    navigate('/analytics');
+                                                    navigate(shortName);
                                                     setName(shortName);
                                                         }
                                                      }
                                             />
 
-                                            <Button color="primary" onClick={() => {
+                                            <Button className="btn-primary" onClick={() => {
                                                  var shortName = item.short_name;
                                             
-                                                navigate('/analytics');
+                                                navigate(shortName);
                                                 
                                                  setName(shortName);
                                 

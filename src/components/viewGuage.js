@@ -68,7 +68,7 @@ function Views ({views}) {
       
 
     return (
-        <GaugeChart id="gauge-chart1" percent={impactLevel} hideText="true" style={chartStyle} colors={["#FF0000", "#FFFF00", "#00FF00"]}/>
+        <GaugeChart id="gauge-chart1" percent={impactLevel} hideText="true" style={chartStyle} colors={["#BE1E2D", "#FFDE17", "#44B649"]}/>
     )
 }
 export default Views;

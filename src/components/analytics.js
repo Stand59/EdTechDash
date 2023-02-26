@@ -12,11 +12,19 @@ import ChapterDownloads from './chapterDownloads';
 import Difficulty from './difficulty';
 import ChapterPredictedReads from './chapterPredictedReads';
 import Referrer from './referrer';
+// import {
+//     useParams
+//   } from "react-router-dom";
 
 
 
 function Analytics({shortName45}) {
     
+    // let { id } = useParams();
+    // console.log ('this' + id)
+    let currentPath = window.location.pathname;
+    let newCurrentPath = currentPath.slice(1);
+
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errMsg, setErrMsg] = useState('');
@@ -25,7 +33,7 @@ function Analytics({shortName45}) {
 
     // const request = 'https://edtechbooks.org/api.php?book=k12handbook&chapter=connectivism&action=analytics';
     // const request = 'https://edtechbooks.org/api.php?book='+ shortName45 +'&action=analytics';
-    const request = 'https://edtechbooks.org/api.php?book='+ shortName45 + '&subaction=analytics'
+    const request = 'https://edtechbooks.org/api.php?book='+ newCurrentPath + '&subaction=analytics'
   
     const [chapters, setChapters] = useState([]);
 
@@ -229,11 +237,6 @@ function Analytics({shortName45}) {
             {data && (
                 <div>
                     <Container>
-                        <Row>
-                            <Col sm={2}>
-                                <Button className="mt-4" onClick={() => navigate('/')}>Back To All Books</Button>
-                            </Col>
-                        </Row>
                         <br/>
                         <Row>
                             
@@ -244,7 +247,11 @@ function Analytics({shortName45}) {
                                 <div>
                                     Number of Chapters: {numberOfChapters} 
                                 </div>
+                           
+                                <Button className="btn-primary mt-4" onClick={() => navigate('/')}>Back To All Books</Button>
+                       
                             </Col>
+                            
                             <Col>
                                 <div>
                                 {/* height='300px' */}
@@ -253,7 +260,7 @@ function Analytics({shortName45}) {
                                 />
                                 </div>
                                 <div>
-                                <a href={edTechLink}  target="_blank"><Button className="button-block" color="warning"> Visit Book </Button></a>
+                                <a href={edTechLink}  target="_blank"><Button className="button-block" color="primary"> Visit Book </Button></a>
                                 </div>
                             </Col>
                         </Row>
@@ -262,20 +269,20 @@ function Analytics({shortName45}) {
                         </Row>
                         <Row>
                             <Col>
-                                <Card color="primary" >
+                                <Card className="navbar" >
                                     <CardBody>
                                         <CardTitle><h3>Page Views</h3></CardTitle>
                                         <CardText>
                                             <Row>
-                                                <Col id="white">
+                                                <Col>
                                                     Book Views: {views1}
                                                 </Col>
-                                                <Col id="white">
-                                                    Impact Level
+                                                <Col>
+                                                    
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col id="white">
+                                                <Col>
                                                     {/* Chapter Views: <ChapterViews shortName45={shortName45}/> */}
                                                     Chapter Views: {views2}
                                                 </Col>
@@ -294,21 +301,21 @@ function Analytics({shortName45}) {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card color="primary">
+                                <Card color="light">
                                     <CardBody>
                                         <CardTitle><h3> PDF Downloads</h3></CardTitle>
                                         <CardText>
                                             <Row>
-                                                <Col id="white">
+                                                <Col>
                                                     Book Downloads: {downloads1}
                                                 </Col>
-                                                <Col id="white">
+                                                <Col>
                                                     Impact Level
                                                 </Col>
                                                 
                                             </Row>
                                             <Row>
-                                                <Col id="white">
+                                                <Col>
                                                     {/* Chapter Downloads: <ChapterDownloads shortName45={shortName45} chapters={chapters} setChapters={setChapters} /> */}
                                                     Chapter Downloads: {downloads2}
                                                 </Col>
@@ -321,9 +328,9 @@ function Analytics({shortName45}) {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card color="primary">
+                                <Card color="success">
                                     <CardBody>
-                                        <CardTitle><h3>Calculated Cost Savings</h3></CardTitle>
+                                        <CardTitle><h3 id="white">Calculated Cost Savings</h3></CardTitle>
                                         <CardText id="white">${costSavings1}</CardText>
 
                                     </CardBody>
@@ -333,10 +340,10 @@ function Analytics({shortName45}) {
                         <br/>
                         <Row>
                             <Col>
-                                <Card color="primary">
+                                <Card color="light">
                                     <CardBody>
-                                        <CardTitle><h3>Chapter Predicted Reads</h3></CardTitle>
-                                        <CardText id="white">
+                                        <CardTitle><h3>Total Chapter Predicted Reads</h3></CardTitle>
+                                        <CardText>
                                             {/* <ChapterPredictedReads shortName45={shortName45}/> */}
                                             {chapPred1}
                                         </CardText>
@@ -344,10 +351,10 @@ function Analytics({shortName45}) {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card color="primary">
+                                <Card color="light">
                                     <CardBody>
                                         <CardTitle><h3>Citations</h3></CardTitle>
-                                        <CardText id="white">
+                                        <CardText>
                                             <Citations sample={sample} authors={authors1}/>
                                         </CardText>
                                     </CardBody>
@@ -364,7 +371,7 @@ function Analytics({shortName45}) {
                         </Row>
                         <Row>
                             <Col>
-                                <Card color="primary" >
+                                <Card color="light" >
                                     <CardBody>
                                         <CardTitle><h3>User Ratings</h3></CardTitle>
                                         <CardText>
@@ -388,7 +395,7 @@ function Analytics({shortName45}) {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card color="primary">
+                                <Card color="light">
                                     <CardBody>
                                         <CardTitle><h3>Percentage of Chapters Updated in The Last Two Years</h3></CardTitle>
                                         <CardText>
@@ -403,9 +410,9 @@ function Analytics({shortName45}) {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card color="primary">
+                                <Card color="light">
                                     <CardBody>
-                                        <CardTitle><h3>Referrers</h3></CardTitle>
+                                        <CardTitle><h3>Top Ten Referrers</h3></CardTitle>
                                         <CardText>
                                             <Row>
                                                 <Col>
@@ -422,15 +429,15 @@ function Analytics({shortName45}) {
                                 </Card>
                             </Col>
                             <Col>
-                                <Card color="primary">
+                                <Card color="light">
                                     <CardBody>
                                         <CardTitle><h3>Reading Level/ Difficulty</h3></CardTitle>
                                         <CardText>
                                             <Row>
                                                 <Col id="white">
                                                     {/* <Difficulty shortName45={shortName45}/> */}
-                                                    <div>Average Reading Difficulty: {readDiffAvg1}</div>
-                                                    <div>Average Reading Level: {readLevAvg1}</div>
+                                                    <div>Average Chapter Reading Difficulty: {readDiffAvg1}</div>
+                                                    <div>Average Chapter Reading Level: {readLevAvg1}</div>
                                                 </Col>
                                             </Row>
                                         </CardText>
