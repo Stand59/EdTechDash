@@ -3,6 +3,7 @@ import star from '../assets/star.png'
 
 function Stars ({avgRating}) {
     
+
     var Rating = avgRating;
 
         var numStar = 0
@@ -46,12 +47,12 @@ function Stars ({avgRating}) {
     return (
         <>
             {starArray.map((item, idx) => (
-            <img key= {idx} src={item} width='50px' />
+            <img key= {idx} src={item} width='40px' />
             )
             )}
 
             {emptyStarArray.map((item, idx) => (
-            <img key= {idx} src={item} width='30px' />
+            <img key= {idx} src={item} width='40px' />
             )
             )}
 

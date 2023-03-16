@@ -43,13 +43,11 @@ function Referrer ({shortName45}) {
         let sample = data.book;
         let referersObject = sample.referers
         let referers = referersObject.map(a => a.referer)
-        // console.log(sample)
+        console.log(sample)
 
     return (
         referers.map((item, idx) => (
-            <Card color="light" key={idx}>
-                {item}
-            </Card>
+                <div>{item}</div>
         ))
     )
 }

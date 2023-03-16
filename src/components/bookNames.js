@@ -1,17 +1,45 @@
 import { useState, useEffect } from 'react';
 import {Card,  Container, Row, Col, Button} from 'reactstrap';
 import {useNavigate} from 'react-router-dom';
+import { GetAllBooks } from './loadapi';
 
 
 
 
-const request = 'https://edtechbooks.org/api.php?action=search_books&offset=0&limit=200';
 
 function BookNames({setName}) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errMsg, setErrMsg] = useState('');
+
+    
     const navigate = useNavigate();
+    
+    let Books = GetAllBooks()
+    console.log(Books)
+//     let Books = getAllBooks()
+//    let response;
+
+//     function getBooks() {
+//         Books.then(function(result){
+//             console.log(result)
+//             return result
+        
+//     })
+// }
+
+    // response = getBooks();
+    // console.log(response);
+   
+    
+    // const AllBooks = (e) => {
+    //     getAllBooks()
+    //     .then(response => {
+    //         console.log(response)
+    //     })
+    // }
+
+    const request = 'https://edtechbooks.org/api.php?action=search_books&offset=0&limit=200';
 
     useEffect(() => {
         const asyncFetch = async () => {
@@ -94,8 +122,9 @@ function BookNames({setName}) {
                                                 src={'https://edtechbooks.org/book_cover_images/' + item.cover_image_md}
                                                 onClick={() => {
                                                     var shortName = item.short_name;
-                                                    navigate(shortName);
+                                                    // navigate(shortName);
                                                     setName(shortName);
+                                                    navigate(`/${shortName}`)
                                                         }
                                                      }
                                             />
@@ -103,7 +132,7 @@ function BookNames({setName}) {
                                             <Button className="btn-primary" onClick={() => {
                                                  var shortName = item.short_name;
                                             
-                                                navigate(shortName);
+                                                navigate(`/${shortName}`);
                                                 
                                                  setName(shortName);
                                 

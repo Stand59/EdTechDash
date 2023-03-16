@@ -57,6 +57,7 @@
 
   h2 {
     color:black;
+    margin-bottom: 25px;
   }
 
   h1 {
@@ -79,5 +80,25 @@
 }
 
 .navbar {
-    background-color: #EBEBF2;
+    background-color: #EBEAF1;
 }
+
+#money::first-letter {
+    font-size: 135%;
+  }
+
+.callout {
+    background-color: #EBEAF1;
+    margin-top: 25px;
+    width: 350px;
+}
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#citation {
+    align-items: flex-start;
+}
+

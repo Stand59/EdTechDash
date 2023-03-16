@@ -13,15 +13,10 @@ import Difficulty from './difficulty';
 import ChapterPredictedReads from './chapterPredictedReads';
 import Referrer from './referrer';
 import Pie from './pie';
-// import {
-//     useParams
-//   } from "react-router-dom";
 
+function BookAnalytics ({shortName45}) {
 
-
-function Analytics({shortName45}) {
-    
-    // let { id } = useParams();
+ // let { id } = useParams();
     // console.log ('this' + id)
     let currentPath = window.location.pathname;
     let newCurrentPath = currentPath.slice(1);
@@ -475,7 +470,7 @@ function Analytics({shortName45}) {
                                                             {item}
                                                         </Card>
                                                     )) */}
-                                                    <Referrer shortName45={shortName45}/>
+                                                    <Referrer shortName45={newCurrentPath}/>
                                                 </Col>
                                             </Row>
                                         </CardText>
@@ -519,9 +514,4 @@ function Analytics({shortName45}) {
    
 }
 
-export default Analytics;
-
-// https://codesandbox.io/s/nucamp-react-fetch-useeffect-async-await-version-eezs9m?file=/src/App.js:0-1512
-// https://codesandbox.io/s/nucamp-react-fetch-useeffect-example-7grwhf?file=/src/App.js:1360-1367
-// https://upmostly.com/tutorials/how-to-display-json-data-in-react-table
-// https://stackoverflow.com/questions/61770691/how-to-split-arrays-inside-object-and-push-to-seperate-state
+export default BookAnalytics;
